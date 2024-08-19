@@ -85,7 +85,9 @@ dotnet ef migrations remove --project ../IoTDataProcessing.Infrastructure --star
 ----
 
 == Architecture
-image::Pic/Pic.jpg[Architecture]
+image::pic/Pic.jpg[Architecture]
+
+Architecture is in the pic file.
 
 == Conclusion
 
