@@ -1,0 +1,92 @@
+= IoT Gen4 - Real-Time IoT Data Processing
+Doc Writer <pragnya.pradip@gmail.com>
+:reproducible:
+:listing-caption: Listing
+:source-highlighter: rouge
+:toc:
+// Uncomment next line to add a title page (or set doctype to book)
+//:title-page:
+// Uncomment next line to set page size (default is A4)
+//:pdf-page-size: Letter
+ 
+
+== Introduction
+The requirements are below.
+
+== Description: 
+A company needs a solution to process data from millions of IoT devices in realtime. The data needs to be ingested, processed, and stored for further analysis. The
+solution should be built using .NET 8 and Azure Cloud Services. 
+
+== Requirements
+1. Data Ingestion: Use Azure IoT Hub to ingest data from IoT devices.
+2. Stream Processing: Implement real-time data processing using Azure
+Services
+3. Data Storage: Store processed data in Azure & SQL Database.
+4. API: Create a web application using ASP.NET Core to visualize real-time data
+and historical trends.
+5. Web Application: Create a web application using ASP.NET Core and
+Consume API to visualize real-time data and historical trends.
+6. Security: Implement security measures to ensure data integrity and
+confidentiality.
+7. Scalability: Ensure the solution can scale to handle data from an increasing
+number of devices.
+8. Alerting: Set up alerting for specific conditions using Azure Monitor
+
+== Deliverables
+[square]
+* Architecture diagram 
+* API Design (at least one) 
+* Source code repository with documented code and share with us GitHub link
+for the review
+* Deployment Mode
+* Short presentation meeting (in-person or online meeting) explaining the solution. 
+ 
+
+== Code Description
+ * This code follows the clean code architecture. There are below projects are there as per the clean code.
+
+1.	IoTDataProcessing.Api
+2.	IoTDataProcessing.Application
+3.	IoTDataProcessing.Domain
+4.	IoTDataProcessing.Infrastructure
+
+* The code follows the CQR, MediatR, Solid principle and repository Pattern.
+This is code first approve. The below command create the script file for DB
+
+
+== Create the migration
+[source]
+----
+cd .\IoTDataProcessing.Infrastructure
+dotnet ef migrations add <migration-Name> --project ../IoTDataProcessing.Infrastructure --startup-project ../IoTDataProcessing.Api
+
+----
+
+
+Update the database directly
+
+[source]
+----
+dotnet ef database update --project ../IoTDataProcessing.Infrastructure --startup-project ../IoTDataProcessing.Api
+----
+
+Create the sql script
+
+[source]
+----
+dotnet ef migrations script --output <DbName.sql> --project ../IoTDataProcessing.Infrastructure --startup-project ../IoTDataProcessing.Api
+----
+
+Remove the latest migration
+[source]
+----
+Remove the migration
+dotnet ef migrations remove --project ../IoTDataProcessing.Infrastructure --startup-project ../IoTDataProcessing.Api
+----
+
+== Architecture
+image::Pic/Pic.jpg[Architecture]
+
+== Conclusion
+
+Thank you !!
