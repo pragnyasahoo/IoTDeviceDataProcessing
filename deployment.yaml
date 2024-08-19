@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: iotapi-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: iotapi
+  template:
+    metadata:
+      labels:
+        app: iotapi
+    spec:
+      containers:
+      - name: iotapi
+        image: yourdockerhub/iotapi:latest
+        ports:
+        - containerPort: 80
+        env:
+        - name: ConnectionStrings__DefaultConnection
+          valueFrom:
+            secretKeyRef:
+              name: sql-db-connection-string
+              key: connectionString
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: iotapi-service
+spec:
+  selector:
+    app: iotapi
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
